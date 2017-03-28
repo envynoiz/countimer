@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Simple jQuery plugin to start a basic count up timer on any HTML element",
   "homepage": "https://github.com/envynoiz/countimer#readme",
-  "main": "dist/ez.countimer.min.js",
+  "main": "dist/ez.countimer.js",
   "keywords": [
     "jquery-plugin",
     "momentjs",

@@ -8,9 +8,10 @@ Simple **jQuery** plugin to start a basic count up timer on any HTML element.
 > Make sure you've loaded all dependencies before use the plugin.
 
 ## Install
-### Using bower
+### Using bower or npm
 ```
 bower install --save countimer
+npm install --save countimer
 ```
 
 ### Manual

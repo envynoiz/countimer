@@ -8,10 +8,9 @@ Simple **jQuery** plugin to start a basic count up timer on any HTML element.
 > Make sure you've loaded all dependencies before use the plugin.
 
 ## Install
-### Using bower or npm
+### Using bower
 ```
 bower install --save countimer
-npm install --save countimer
 ```
 
 ### Manual
@@ -47,8 +46,8 @@ You can attach it either on any element who has the **value** attribute or those
 * enableEvents: To enable/disable the timer events (**default** `false`)
 * autoStart: Auto start the timer when rendered (**default** `true`)
 * useHours: Show/Hide the hours (**default** `true`)
-* minuteIndicator: A simple string located next to the seconds (**default** `''`)
-* secondIndicator: A simple string located next to the minutes (**default** `''`)
+* minuteIndicator: A simple string located next to the minutes (**default** `''`)
+* secondIndicator: A simple string located next to the seconds (**default** `''`)
 * separator: Separator between each time block (**default** `':'`)
 * leadingZeros: Number of leading zeros in each time block (**default** `2`)
 * initHours: Init number of hours (**default** `0`)
@@ -119,7 +118,7 @@ $('.timer').countimer({
 
 ### Init values
 You can start the timer with the desired hours, minutes and seconds.  
-The countimer will start with the data provided.
+The countimer will start with the provided data.
 ```
 $('.timer').countimer({
     initHours: 4,
@@ -130,7 +129,7 @@ $('.timer').countimer({
 ```
 04:50:10 
 ```
-It's possible combine the different times on the countimer, it always will print the correct value depending of the selected display mode.
+It's possible combine different times on the countimer, it always will print the correct value depending of the selected display mode.
 ```
 // Default display mode
 $('.timer').countimer({
@@ -175,7 +174,7 @@ Stop the countimer.
 $('.timer').countimer('stop');
 ```
 ### Stopped
-Return a band indicating if the countimer has been stopped or not yet.
+Return a boolean indicating if the countimer has been stopped or not.
 ```
 $('.timer').countimer('stopped');
 ```
@@ -184,9 +183,9 @@ Return the current time at the moment when the method was called.
 ```
 $('.timer').countimer('current');
 ```
-When you get the current time, the returned object will contain the formatted and unformatted displayed value, as well the original time representation.
+When you get the current time, the returned object will contain the formatted and unformatted displayed value, as well the original representation of time.
 ```
-// If the timer was displayed with the default "displayMode" and it has as value: 02:45:08
+// If the timer was rendered with the default display mode and it has as value: 02:45:08
 {
     displayedMode: {
         formatted: '02:45:08',
@@ -204,7 +203,7 @@ When you get the current time, the returned object will contain the formatted an
 }
 ```
 ```
-// If the timer was displayed with the default "displayMode", the option "useHours" is false and it has as value: 120:04
+// If the timer was rendered with the default display mode, the option "useHours" is false and it has as value: 120:04
 {
     displayedMode: {
         formatted: '120:04',
@@ -224,7 +223,7 @@ When you get the current time, the returned object will contain the formatted an
 > The methods `start`, `resume` and `stop` are chainables, it means you can do something like that: `$('.timer').countimer('stop').current();`
 
 ## Events
-For default the countimer events are disabled in order not to call them every second, minute or hour.  
+By default the countimer events are disabled in order not to call them every second, minute or hour.  
 If you really want to use them, then set the option `enableEvents` to true.
 * On each hour
 ```

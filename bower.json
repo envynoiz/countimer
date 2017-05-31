@@ -1,6 +1,6 @@
 {
   "name": "countimer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple jQuery plugin to start a basic count up timer on any HTML element",
   "homepage": "https://github.com/envynoiz/countimer",
   "location": "envynoiz/countimer",

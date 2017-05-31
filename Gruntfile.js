@@ -9,20 +9,18 @@ module.exports = function (grunt) {
   grunt.initConfig({
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
-    banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-      '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-      '* Simple jQuery plugin to start a basic count up timer on any HTML element\n' +
-      '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
-      '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-      ' Licensed MIT */\n',
+    banner: [
+      '/*\n* <%= pkg.name %> - v<%= pkg.version %> - ',
+      '<%= grunt.template.today("yyyy-mm-dd") %> - <%= pkg.homepage %>\n',
+      '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %> \n*/\n'
+    ].join(''),
     // Task configuration.
     clean: {
       files: ['dist']
     },
     concat: {
       options: {
-        banner: '<%= banner %>',
-        stripBanners: true
+        banner: '<%= banner %>'
       },
       dist: {
         src: ['src/<%= pkg.name %>.js'],
@@ -31,7 +29,8 @@ module.exports = function (grunt) {
     },
     uglify: {
       options: {
-        banner: '<%= banner %>'
+        banner: '<%= banner %>',
+        preserveComments: 'some'
       },
       dist: {
         src: '<%= concat.dist.dest %>',

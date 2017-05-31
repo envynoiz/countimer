@@ -40,9 +40,9 @@ You can attach it either on any element who has the **value** attribute or those
 
 ### Options
 - displayMode: One of the following display options:
-    * On seconds : 0 
-    * On minutes: 1
-    * On hours: 2
+    * In seconds : 0 
+    * In minutes: 1
+    * In hours: 2
     * Full timer: `3` (**default**)
 * enableEvents: To enable/disable the timer events (**default** `false`)
 * autoStart: Auto start the timer when rendered (**default** `true`)
@@ -50,7 +50,7 @@ You can attach it either on any element who has the **value** attribute or those
 * minuteIndicator: A simple string located next to the minutes (**default** `''`)
 * secondIndicator: A simple string located next to the seconds (**default** `''`)
 * separator: Separator between each time block (**default** `':'`)
-* leadingZeros: Number of leading zeros in each time block (**default** `2`)
+* leadingZeros: Number of leading zeros **only*** when the display mode is different to full mode with hours (**default** `2`)
 * initHours: Init number of hours (**default** `0`)
 * initMinutes: Init number of minutes (**default** `0`)
 * initSeconds: Init number of seconds (**default** `0`)
@@ -226,7 +226,7 @@ When you get the current time, the returned object will contain the formatted an
 ## Events
 By default the countimer events are disabled in order not to call them every second, minute or hour.  
 If you really want to use them, then set the option `enableEvents` to true.
-* On each hour
+* Every hour
 ```
 $('.timer').countimer({
     enableEvents: true
@@ -234,7 +234,7 @@ $('.timer').countimer({
     console.log(time);
 });
 ```
-* On each minute
+* Every minute
 ```
 $('.timer').countimer({
     enableEvents: true
@@ -242,7 +242,7 @@ $('.timer').countimer({
     console.log(time);
 });
 ```
-* On each second
+* Every second
 ```
 $('.timer').countimer({
     enableEvents: true

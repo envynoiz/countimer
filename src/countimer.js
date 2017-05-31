@@ -1,17 +1,20 @@
-/*
+/**!
+ * @preserve
  *
+ * Simple jQuery plugin to start a basic count up timer on any HTML element.
  *
+ * I wrote this plugin for using into a personal project but could be useful
+ * for everyone who needs a simple counter.
  *
- * Copyright (c) 2017 envynoiz
  * Licensed under the MIT license.
  */
-(function ($) {
+;(function ($, window, document, undefined) {
   'use strict';
 
   var prefix = 'plugin_';
   var pluginName = 'countimer';
 
-  $.plugin = function(element, options) {
+  var Plugin = function(element, options) {
     // Main instance
     var plugin = this;
 
@@ -20,9 +23,9 @@
 
     // Private attributes
     const displayMode = {
-      ON_SECONDS : 0,
-      ON_MINUTES : 1,
-      ON_HOURS : 2,
+      IN_SECONDS : 0,
+      IN_MINUTES : 1,
+      IN_HOURS : 2,
       FULL: 3,
       MAX_INDEX: 3
     };
@@ -63,8 +66,9 @@
       return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
     };
 
-    var format = function(time, withSeparator){
-      var pre = leadingZeros(time, plugin.options.leadingZeros);
+    var format = function(time, withSeparator, overrideZeros){
+      var finalZeros = overrideZeros? overrideZeros : plugin.options.leadingZeros;
+      var pre = leadingZeros(time, finalZeros);
       return withSeparator? pre.concat(plugin.options.separator) : pre;
     };
 
@@ -132,7 +136,9 @@
         full : function() {
           // Normal display
           var normalNf = $.extend({}, timer);
-          var normal = format(timer.hours, true).concat(format(timer.minutes, true)).concat(format(timer.seconds));
+          var normal = format(timer.hours, true, 2)
+            .concat(format(timer.minutes, true, 2))
+            .concat(format(timer.seconds, false, 2));
           normal = normal.concat(plugin.options.secondIndicator);
           // Minutes display
           var minutesObj = expressions.toMinutes();
@@ -140,16 +146,16 @@
             minutes: minutesObj.unformatted.minutes,
             seconds: timer.seconds
           };
-          var minutes = format(minutesNf.minutes, true).concat(format(minutesNf.seconds));
+          var minutes = format(minutesNf.minutes, true).concat(format(minutesNf.seconds, false, 2));
           minutes = minutes.concat(plugin.options.secondIndicator);
           return (plugin.options.useHours)? getObjExpression(normalNf, normal) : getObjExpression(minutesNf, minutes);
         }
       };
       // Array with refresh conditions
       var refreshConditions = [
-        true, // each second
-        0 === timer.seconds, // each minute
-        0 === timer.minutes && 0 === timer.seconds // each hour
+        true, // every second
+        0 === timer.seconds, // every minute
+        0 === timer.minutes && 0 === timer.seconds // every hour
       ];
       // Array with each function expression
       displayResults = [
@@ -196,7 +202,7 @@
       $elm = $(elm);
       isStopped = true;
       hasValueAttr = undefined !== $elm.attr('value');
-      refreshMode = plugin.options.displayMode <= displayMode.ON_HOURS? plugin.options.displayMode : displayMode.ON_SECONDS;
+      refreshMode = plugin.options.displayMode <= displayMode.IN_HOURS? plugin.options.displayMode : displayMode.IN_SECONDS;
       // Start?
       if(plugin.options.autoStart){
         plugin.start();
@@ -260,11 +266,11 @@
         var plugin = plugins[index];
         // Is plugin already instanced ?
         if (!plugin) {
-          throw new Error(pluginName.concat(' $.plugin is not instantiated yet'));
+          throw new Error(pluginName.concat(' is not instantiated yet'));
         }
         // Does the method exist?
         if ('function' !== typeof plugin[method]) {
-          throw new Error('Method '.concat(method).concat(' is not defined on ').concat(pluginName).concat(' $.plugin'));
+          throw new Error('Method '.concat(method).concat(' is not defined on ').concat(pluginName));
         }
         // Call function and preserve result
         results.push(plugin[method].apply(plugin, args));
@@ -283,10 +289,10 @@
     return this.each( function() {
       // If the instance doesn't exist, then initialize it
       if ( !$(this).data(prefix.concat(pluginName)) ) {
-        $(this).data(prefix.concat(pluginName), new $.plugin(this, options));
+        $(this).data(prefix.concat(pluginName), new Plugin(this, options));
       }
     });
 
   };
 
-}(jQuery));
+}(jQuery, window, document));

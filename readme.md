@@ -44,7 +44,9 @@ You can attach it either on any element who has the **value** attribute or those
     * In minutes: 1
     * In hours: 2
     * Full timer: `3` (**default**)
-* enableEvents: To enable/disable the timer events (**default** `false`)
+* enableEvents: For enabling/disabling the timer events (**default** `false`)
+* displayMillis: Set to true to display the milliseconds next to the seconds in the full view (**default** `false`) 
+* destroyDOMElement: When the plugin is destroyed, it decides whether to remove the HTML element from the DOM or not (**default** `false`)
 * autoStart: Auto start the timer when rendered (**default** `true`)
 * useHours: Show/Hide the hours (**default** `true`)
 * minuteIndicator: A simple string located next to the minutes (**default** `''`)
@@ -165,22 +167,22 @@ $('.timer').countimer('start');
 ```
 >If the option `autoStart` is true, the timer will start automatically after displayed.
 ### Resume
-Resume the countimer at the last time when it was stopped.
+Resumes the countimer at the last time when it was stopped.
 ```
 $('.timer').countimer('resume');
 ```
 ### Stop
-Stop the countimer.
+Stops the countimer.
 ```
 $('.timer').countimer('stop');
 ```
 ### Stopped
-Return a boolean indicating if the countimer has been stopped or not.
+Returns a boolean indicating if the countimer has been stopped or not.
 ```
 $('.timer').countimer('stopped');
 ```
 ### Get current time
-Return the current time at the moment when the method was called.
+Returns the current time at the moment when the method was called.
 ```
 $('.timer').countimer('current');
 ```
@@ -219,6 +221,11 @@ When you get the current time, the returned object will contain the formatted an
         seconds: 4
     }
 }
+```
+### Destroy
+Destroys the current plugin instance and all the attachment events on it
+```
+$('.timer').countimer('destroy');
 ```
 
 > The methods `start`, `resume` and `stop` are chainables, it means you can do something like that: `$('.timer').countimer('stop').current();`

@@ -20,7 +20,7 @@ npm install --save countimer
 3. Download the library and include it into your HTML code `<script type="text/javascript" src="dist/ez.countimer.min.js"></script>`
 
 ## Usage
-Add the following block and attach the countimer to desire element:  
+Add the following block and attach the countimer to the desired element:  
 ```
 <script type="text/javascript">
     $( document ).ready(function() {
@@ -36,7 +36,7 @@ The timer will start with the default options.
 ```
 00:00:00
 ```
-You can attach it either on any element who has the **value** attribute or those that work with **text** like a `span`, `div`, `p` and others.
+You can attach it either on elements with a **value** attribute or those ones that work with **text** like a `span`, `div`, `p` and others.
 
 ### Options
 - displayMode: One of the following display options:
@@ -45,17 +45,17 @@ You can attach it either on any element who has the **value** attribute or those
     * In hours: 2
     * Full timer: `3` (**default**)
 * enableEvents: For enabling/disabling the timer events (**default** `false`)
-* displayMillis: Set to true to display the milliseconds next to the seconds in the full view (**default** `false`) 
+* displayMillis: Set to true to display the milliseconds next to the seconds into the full view (**default** `false`) 
 * destroyDOMElement: When the plugin is destroyed, it decides whether to remove the HTML element from the DOM or not (**default** `false`)
 * autoStart: Auto start the timer when rendered (**default** `true`)
-* useHours: Show/Hide the hours (**default** `true`)
-* minuteIndicator: A simple string located next to the minutes (**default** `''`)
-* secondIndicator: A simple string located next to the seconds (**default** `''`)
+* useHours: To decide whether to use the hours or not (**default** `true`)
+* minuteIndicator: A single character located next to the minutes (**default** `''`)
+* secondIndicator: A single character located next to the seconds (**default** `''`)
 * separator: Separator between each time block (**default** `':'`)
-* leadingZeros: Number of leading zeros **only*** when the display mode is different to full mode with hours (**default** `2`)
-* initHours: Init number of hours (**default** `0`)
-* initMinutes: Init number of minutes (**default** `0`)
-* initSeconds: Init number of seconds (**default** `0`)
+* leadingZeros: Number of leading zeros. It's **only** used when the display mode is different to the full mode with hours (**default** `2`)
+* initHours: Initial number of hours (**default** `0`)
+* initMinutes: Initial number of minutes (**default** `0`)
+* initSeconds: Initial number of seconds (**default** `0`)
 
 ### Display modes
 Render the timer as:
@@ -115,11 +115,11 @@ $('.timer').countimer({
 });
 ```
 ```
-// The timer add the init hours into minutes value
+// The timer adds the initial hours into the minutes value
 80:00"
 ```
 
-### Init values
+### Initial values
 You can start the timer with the desired hours, minutes and seconds.  
 The countimer will start with the provided data.
 ```
@@ -132,7 +132,7 @@ $('.timer').countimer({
 ```
 04:50:10 
 ```
-It's possible combine different times on the countimer, it always will print the correct value depending of the selected display mode.
+It's possible to combine different times into the countimer, it will always print the proper value depending of the selected display mode.
 ```
 // Default display mode
 $('.timer').countimer({
@@ -145,7 +145,7 @@ $('.timer').countimer({
 04:01:00
 ```
 ```
-// Timer on minutes
+// Timer in minutes
 $('.timer').countimer({
     leadingZeros: 4,
     displayMode: 1,
@@ -186,9 +186,9 @@ Returns the current time at the moment when the method was called.
 ```
 $('.timer').countimer('current');
 ```
-When you get the current time, the returned object will contain the formatted and unformatted displayed value, as well the original representation of time.
+When you get the current time, the returned object will contain the displayed value and the original representation of time.
 ```
-// If the timer was rendered with the default display mode and it has as value: 02:45:08
+// If the timer was rendered with the default display mode and has the following value: 02:45:08
 {
     displayedMode: {
         formatted: '02:45:08',
@@ -206,7 +206,7 @@ When you get the current time, the returned object will contain the formatted an
 }
 ```
 ```
-// If the timer was rendered with the default display mode, the option "useHours" is false and it has as value: 120:04
+// If the timer was rendered with the default display mode, the option "useHours" is false and has the following value: 120:04
 {
     displayedMode: {
         formatted: '120:04',
@@ -223,7 +223,7 @@ When you get the current time, the returned object will contain the formatted an
 }
 ```
 ### Destroy
-Destroys the current plugin instance and all the attachment events on it
+Destroys the current plugin instance and all the attached events on it
 ```
 $('.timer').countimer('destroy');
 ```
@@ -232,7 +232,7 @@ $('.timer').countimer('destroy');
 
 ## Events
 By default the countimer events are disabled in order not to call them every second, minute or hour.  
-If you really want to use them, then set the option `enableEvents` to true.
+If you really want to use them, set the `enableEvents` option to true.
 * Every hour
 ```
 $('.timer').countimer({
@@ -260,4 +260,4 @@ $('.timer').countimer({
 
 Plugin available under MIT license (See LICENSE file)  
 
-Copyright © 2017 envynoiz
+Copyright © 2018 envynoiz
